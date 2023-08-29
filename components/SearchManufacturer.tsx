@@ -26,10 +26,10 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacture
           </Combobox.Button>
           <Combobox.Input
             className="search-manufacturer__input"
-            placeholder="Volkswagen"
+            placeholder={manufacturer || 'Any manufacture'}
             displayValue={(manufacturer: string) => manufacturer}
             onChange={(e) => setQuery(e.target.value)}
-            autoComplete='off'
+            autoComplete="off"
           />
           <Transition
             as={Fragment}

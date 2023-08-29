@@ -17,6 +17,7 @@ const CustomFilter = ({ title, options, setIsLoading }: CustomFilterProps) => {
   const currentOption = options.find((opt) => opt.value.toLowerCase() === `${currentValue}`) || options[0];
 
   const [selected, setSelected] = useState(currentOption);
+  const [isActive, setIsActive] = useState(false);
 
   const handleUpdateParams = (e: { title: string; value: string }) => {
     const newPathName = updateSearchParams(title, e.value.toLowerCase());
@@ -25,7 +26,7 @@ const CustomFilter = ({ title, options, setIsLoading }: CustomFilterProps) => {
   };
 
   return (
-    <div className="w-fit ">
+    <div className={`w-fit ${isActive && 'z-50'}`} onClick={() => setIsActive((state) => !state)}>
       <Listbox
         value={selected}
         onChange={(e) => {
@@ -45,7 +46,7 @@ const CustomFilter = ({ title, options, setIsLoading }: CustomFilterProps) => {
             />
           </Listbox.Button>
           <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
-            <Listbox.Options className="custom-filter__options">
+            <Listbox.Options className="custom-filter__options z-40">
               {options.map((option) => (
                 <Listbox.Option
                   key={option.title}

@@ -28,17 +28,24 @@ const SearchBar = ({ setIsLoading }: any) => {
     e.preventDefault();
 
     setIsLoading(true);
+
     updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
   };
 
-  const updateSearchParams = (model: string, manufacturer: string) => {
+  const updateSearchParams = (newModel: string, newManufacturer: string) => {
     const searchParams = new URLSearchParams(window.location.search);
 
-    if (model) searchParams.set('model', model);
+    if (newModel) searchParams.set('model', newModel);
     else searchParams.delete('model');
 
-    if (manufacturer) searchParams.set('manufacturer', manufacturer);
-    else searchParams.delete('manufacturer');
+    if (newManufacturer !== 'not specify' && newManufacturer !== '') {
+      searchParams.set('manufacturer', newManufacturer);
+    } else searchParams.delete('manufacturer');
+
+    if (model.toLowerCase() === currentModel && manufacturer.toLowerCase() === currentManufacturerValue) {
+      setIsLoading(false);
+      return;
+    }
 
     const newPathName = `${window.location.pathname}?${searchParams.toString()}`;
 
@@ -57,14 +64,14 @@ const SearchBar = ({ setIsLoading }: any) => {
           alt="model icon"
           width={25}
           height={25}
-          className="absolute w-[20px] h-[20px] ml-4"
+          className="absolute w-[20px] h-[20px] top-[14px] ml-4"
         />
         <input
           type="text"
           name="model"
           value={model}
           onChange={(e) => setModel(e.target.value)}
-          placeholder="Tiguan"
+          placeholder={model || 'Any model'}
           className="searchbar__input"
         />
         <SearchButton otherClasses="md:hidden" />
