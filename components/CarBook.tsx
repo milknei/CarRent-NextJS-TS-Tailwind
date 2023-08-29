@@ -70,7 +70,7 @@ const CarBook = ({ isOpenBook, closeModal, car, handleAlert, carRent }: CarDetai
                     onClick={closeModal}
                     className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full"
                   >
-                    <Image src="close.svg" alt="close" width={20} height={20} className="object-contain" />
+                    <Image src="close.svg" alt="close" width={20} height={20} className="object-contain top-[14px]" />
                   </button>
 
                   <div className="flex-1 flex flex-col gap-3">
@@ -94,7 +94,7 @@ const CarBook = ({ isOpenBook, closeModal, car, handleAlert, carRent }: CarDetai
                         alt="model icon"
                         width={25}
                         height={25}
-                        className="absolute w-[20px] h-[20px] ml-4"
+                        className="absolute w-[20px] h-[20px] ml-4 top-[14px]"
                       />
                       <input
                         type="text"
@@ -113,7 +113,7 @@ const CarBook = ({ isOpenBook, closeModal, car, handleAlert, carRent }: CarDetai
                         alt="model icon"
                         width={25}
                         height={25}
-                        className="absolute w-[20px] h-[20px] ml-4"
+                        className="absolute w-[20px] h-[20px] ml-4 top-[14px]"
                       />
                       <input
                         type="tel"
