@@ -12,6 +12,7 @@ export default function Feed({ searchParams }: HomeProps) {
   const [allCars, setAllCars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [alert, setAlert] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,9 +50,27 @@ export default function Feed({ searchParams }: HomeProps) {
         <SearchBar setIsLoading={setIsLoading} />
 
         <div className="home__filter-container !items-start">
-          <CustomFilter title="fuel" options={fuels} setIsLoading={setIsLoading} />
-          <CustomFilter title="year" options={yearsOfProduction} setIsLoading={setIsLoading} />
-          <CustomFilter title="sort" options={sort} setIsLoading={setIsLoading} />
+          <CustomFilter
+            title="fuel"
+            options={fuels}
+            setIsLoading={setIsLoading}
+            selectedFilter={selectedFilter}
+            setSelectedFilter={() => setSelectedFilter('fuel')}
+          />
+          <CustomFilter
+            title="year"
+            options={yearsOfProduction}
+            setIsLoading={setIsLoading}
+            selectedFilter={selectedFilter}
+            setSelectedFilter={() => setSelectedFilter('year')}
+          />
+          <CustomFilter
+            title="sort"
+            options={sort}
+            setIsLoading={setIsLoading}
+            selectedFilter={selectedFilter}
+            setSelectedFilter={() => setSelectedFilter('sort')}
+          />
         </div>
       </div>
       {!isDataEmpty ? (

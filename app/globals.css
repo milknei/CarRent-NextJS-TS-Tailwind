@@ -74,7 +74,7 @@
 }
 
 .home__filter-container {
-  @apply flex justify-between flex-wrap items-center gap-2 lg:max-w-[27rem] w-full;
+  @apply flex max-sm:flex-col max-sm:content-center justify-center lg:justify-between flex-wrap items-center gap-2 lg:max-w-[27rem] w-full;
 }
 
 .home__cars-wrapper {
@@ -148,7 +148,7 @@
 
 /* START: Custom Filter styles */
 .custom-filter__btn {
-  @apply relative w-full min-w-[110px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
+  @apply relative w-full min-w-[140px] sm:min-w-[130px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
 }
 
 .custom-filter__options {

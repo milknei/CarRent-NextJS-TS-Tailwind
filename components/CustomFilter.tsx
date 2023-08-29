@@ -8,7 +8,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { updateSearchParams } from '@/utils';
 import { useSearchParams } from 'next/navigation';
 
-const CustomFilter = ({ title, options, setIsLoading }: CustomFilterProps) => {
+const CustomFilter = ({ title, options, setIsLoading, selectedFilter, setSelectedFilter }: CustomFilterProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -26,7 +26,7 @@ const CustomFilter = ({ title, options, setIsLoading }: CustomFilterProps) => {
   };
 
   return (
-    <div className={`w-fit ${isActive && 'z-50'}`} onClick={() => setIsActive((state) => !state)}>
+    <div className={`w-fit ${selectedFilter === title ? 'z-50' : ''}`} onClick={setSelectedFilter}>
       <Listbox
         value={selected}
         onChange={(e) => {
