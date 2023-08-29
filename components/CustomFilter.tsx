@@ -7,9 +7,12 @@ import { useRouter } from 'next/navigation';
 import { Listbox, Transition } from '@headlessui/react';
 import { updateSearchParams } from '@/utils';
 import { useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import path from 'path';
 
 const CustomFilter = ({ title, options, setIsLoading, selectedFilter, setSelectedFilter }: CustomFilterProps) => {
   const searchParams = useSearchParams();
+  const pathName = usePathname();
   const router = useRouter();
 
   const currentValue = searchParams.get(title);
@@ -17,12 +20,14 @@ const CustomFilter = ({ title, options, setIsLoading, selectedFilter, setSelecte
   const currentOption = options.find((opt) => opt.value.toLowerCase() === `${currentValue}`) || options[0];
 
   const [selected, setSelected] = useState(currentOption);
-  const [isActive, setIsActive] = useState(false);
 
   const handleUpdateParams = (e: { title: string; value: string }) => {
     const newPathName = updateSearchParams(title, e.value.toLowerCase());
-    setIsLoading(true);
-    router.push(newPathName, { scroll: false });
+
+    if (newPathName !== pathName) {
+      setIsLoading(true);
+      router.push(newPathName, { scroll: false });
+    }
   };
 
   return (

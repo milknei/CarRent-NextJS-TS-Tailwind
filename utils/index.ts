@@ -104,7 +104,7 @@ export const updateSearchParams = (type: string, value: string) => {
   if (!value) searchParams.delete(type);
   else searchParams.set(type, value);
 
-  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+  const newPathname = `${window.location.pathname}${searchParams.toString() && '?'}${searchParams.toString()}`;
 
   return newPathname;
 };
